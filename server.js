@@ -30,6 +30,10 @@ app.get('/api/unCompTodos', (req, res) => {
     getUnCompTodos(res);
 });
 
+app.patch('/api/complete/:id', (req, res) => {
+    let id = req.params.id;
+    completeTodo(id, res);
+});
 
 app.listen(port, () => {
     console.log(`The server is up on port ${port}`);

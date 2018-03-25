@@ -6,19 +6,21 @@ let app = express();
 app.use(bodyParser.json());
 
 
-let todo;
-
 let addTodo = (text, res) => {
-     if(Todo.find({text: text})){
-       res.send('You have already added todo with the same task');
-       todo = new Todo ({
-        text: text
-        });  
-     }else {
-        todo.save().then((todo) => {
-            res.send({todo});
-           });
-     }
+    let todo;
+    Todo.find().then((todos) => {
+       for( let i = 0; i < todos.length; ++i){
+           if(todos[i].text === text){
+            return  res.status(400).send('You have already added the same task')
+            }
+        }
+            todo = new Todo ({
+                text: text
+            });  
+            todo.save().then((todo) => {
+                res.send({todo});
+            });
+   });
 }
 
 

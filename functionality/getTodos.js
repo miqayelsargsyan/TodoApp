@@ -6,8 +6,8 @@ app.use(bodyParser.json());
 
 let getTodos = (res) => {
     Todo.find().then((todos) => {
-        res.send({todos});
-    })
+        res.send(todos)
+    });
 }
 
 
