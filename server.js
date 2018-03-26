@@ -7,6 +7,7 @@ let {getTodos} = require('./functionality/getTodos');
 let {getCompTodos} = require('./functionality/getCompTodos');
 let {getUnCompTodos} = require('./functionality/unCompTodos');
 let {completeTodo} = require('./functionality/complete');
+let _ = require('lodash');
 
 let port = process.env.PORT || 3000;
 let app = express();
