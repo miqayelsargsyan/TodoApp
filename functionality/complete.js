@@ -4,7 +4,6 @@ const {Todo} = require('../models/todo');
 const config = require('../mongoose/mongoose');
 const {ObjectID} = require('mongodb');
 let {getTodos} = require('./getTodos');
-let _ = require('lodash');
 let app = express();
 app.use(bodyParser.json());
 
