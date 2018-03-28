@@ -2,12 +2,15 @@ const config = require('./mongoose/mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 const {Todo} = require('./models/todo');
-let {addTodo, saveTodo} = require('./functionality/addTodo');
-let {getTodos} = require('./functionality/getTodos');
-let {getCompTodos} = require('./functionality/getCompTodos');
-let {getUnCompTodos} = require('./functionality/unCompTodos');
-let {completeTodo} = require('./functionality/complete');
-let _ = require('lodash');
+const {User} = require('./models/user');
+const {addTodo, saveTodo} = require('./functionality/addTodo');
+const {getTodos} = require('./functionality/getTodos');
+const {getCompTodos} = require('./functionality/getCompTodos');
+const {getUnCompTodos} = require('./functionality/unCompTodos');
+const {completeTodo} = require('./functionality/complete');
+const {signIn} = require('./functionality/signIn');
+const {logIn} = require('./functionality/logIn');
+const {authenticate} = require('./middleware/authenticate')
 
 let port = process.env.PORT || 3000;
 let app = express();
@@ -15,7 +18,11 @@ app.use(bodyParser.json());
 
 
 
-app.post('/api/newtodo', (req, res) => {
+app.post('/api/signIn', (req, res) => {
+    signIn(req, res);
+});
+
+app.post('/api/newTodo', authenticate , (req, res) => {
     addTodo(req.body.text, res);
 });
 
