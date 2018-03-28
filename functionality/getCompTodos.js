@@ -1,8 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {Todo} = require('../models/todo');
-let app = express();
-app.use(bodyParser.json());
+const config = require('../mongoose/mongoose');
 
 let getCompTodos = (res) => {
     Todo.find({completed: true}).then((todos) => {

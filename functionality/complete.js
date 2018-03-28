@@ -2,10 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {Todo} = require('../models/todo');
 const config = require('../mongoose/mongoose');
-const {ObjectID} = require('mongodb');
-let {getTodos} = require('./getTodos');
-let app = express();
-app.use(bodyParser.json());
+
 
 
 let completeTodo = (id, res) => {
