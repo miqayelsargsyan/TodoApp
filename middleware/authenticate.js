@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const {User} = require('../models/user');
 
 
@@ -10,10 +9,8 @@ let authenticate = (req, res, next) => {
         }
             req.user = user;
             req.token = token;   
-            next();
-            
+            next();       
     },(e) => {
-        
         res.status(401).send(e);
         })
 } 
